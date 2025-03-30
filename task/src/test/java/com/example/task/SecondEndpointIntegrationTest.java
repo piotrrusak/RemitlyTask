@@ -29,7 +29,7 @@ public class SecondEndpointIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.countryISO2").isString())
                 .andExpect(jsonPath("$.countryName").isString())
-                .andExpect(jsonPath("$.banksFromCountry").isArray());
+                .andExpect(jsonPath("$.swiftCodes").isArray());
 
     }
 
