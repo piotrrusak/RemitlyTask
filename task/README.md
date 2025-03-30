@@ -23,7 +23,12 @@ A Spring Boot application for managing and querying SWIFT code-based bank data. 
 ### Run with Docker
 
 ```bash
-docker-compose up --build
+mvn clean package
+```
+
+If no permission use this sudo:
+```bash
+sudo docker-compose up --build
 ```
 
 The application will be available at: [http://localhost:8080](http://localhost:8080)
