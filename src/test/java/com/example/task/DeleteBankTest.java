@@ -25,7 +25,7 @@ public class DeleteBankTest {
 
         String swiftCode = "AAISALTRXXX";
 
-        mockMvc.perform(delete("/bank/swift-codes/{swiftCode}", swiftCode))
+        mockMvc.perform(delete("/api/banks/{swiftCode}", swiftCode))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.message").value("Bank deleted"));
 

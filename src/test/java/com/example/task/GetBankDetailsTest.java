@@ -24,7 +24,7 @@ public class GetBankDetailsTest {
 
         String swiftCode = "AAISALTRXXX";
 
-        mockMvc.perform(get("/bank/swift-codes/{swiftCode}", swiftCode))
+        mockMvc.perform(get("/api/banks/{swiftCode}", swiftCode))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.address").isString())
                 .andExpect(jsonPath("$.bankName").isString())

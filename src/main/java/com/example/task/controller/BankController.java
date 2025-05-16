@@ -1,8 +1,6 @@
 package com.example.task.controller;
 
-import com.example.task.dto.BranchDTO;
-import com.example.task.dto.BankDetailsDTO;
-import com.example.task.dto.PostBankDTO;
+import com.example.task.dto.*;
 import com.example.task.model.Bank;
 import com.example.task.service.AddressService;
 import com.example.task.service.BankService;
@@ -19,7 +17,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/bank")
+@RequestMapping("/api")
 public class BankController {
 
     private final BankService bankService;
@@ -28,13 +26,13 @@ public class BankController {
 
     private final AddressService addressService;
 
-    @GetMapping("/swift-codes")
+    @GetMapping("/banks")
     public List<Bank> findAllBanks() {
         List<Bank> banks = this.bankService.findAll();
         return banks;
     }
 
-    @GetMapping("/swift-codes/{swift_code}")
+    @GetMapping("/banks/{swift_code}")
     public BankDetailsDTO getBankDetails(@PathVariable String swift_code) {
         BankDetailsDTO firstEndpointDTO = this.bankService.findBankDetails(swift_code);
         List<BranchDTO> branches = this.bankService.getBranchesOf(this.bankService.findBySwiftCode(firstEndpointDTO.getSwiftCode()).getId());
@@ -42,17 +40,25 @@ public class BankController {
         return firstEndpointDTO;
     }
 
-    @DeleteMapping("/swift-codes/{swift_code}")
+    @DeleteMapping("/banks/{swift_code}")
     public Map<String, String> deleteBankBySwiftCode(@PathVariable String swift_code) {
         Bank bank = this.bankService.findBySwiftCode(swift_code);
         this.bankService.deleteById(bank.getId());
         return Map.of("message", "Bank deleted");
     }
 
-    @PostMapping("/swift-codes")
+    @PostMapping("/banks")
     public Map<String, String> postBank(@RequestBody PostBankDTO thirdEndpointDTO) {
         this.bankService.createBankFromDTO(thirdEndpointDTO);
         return Map.of("message", "Bank created");
+    }
+
+    @GetMapping("/banks/country/{countryISO2}")
+    public CountryDetailsDTO getCountryBanks(@PathVariable String countryISO2) {
+        CountryDetailsDTO secondEndpointDTO = this.bankService.findCountryDetails(countryISO2);
+        List<BanksDTO> banks = this.bankService.getBanksOf(countryISO2);
+        secondEndpointDTO.setSwiftCodes(banks);
+        return secondEndpointDTO;
     }
 
 }

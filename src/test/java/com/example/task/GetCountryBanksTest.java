@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class GetCountryDetailsTest {
+public class GetCountryBanksTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -25,7 +25,7 @@ public class GetCountryDetailsTest {
 
         String countryISO2 = "PL";
 
-        mockMvc.perform(get("/country/swift-codes/country/{countryISO2}", countryISO2))
+        mockMvc.perform(get("/api/banks/country/{countryISO2}", countryISO2))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.countryISO2").isString())
                 .andExpect(jsonPath("$.countryName").isString())

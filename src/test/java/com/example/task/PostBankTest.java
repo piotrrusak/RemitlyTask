@@ -36,7 +36,7 @@ class PostBankTest {
                 "BOFAUS3N"
         );
 
-        mockMvc.perform(post("/bank/swift-codes")
+        mockMvc.perform(post("/api/banks")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isOk())

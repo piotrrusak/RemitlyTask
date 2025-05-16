@@ -1,5 +1,5 @@
 
-# Swift Bank API
+_# Swift Bank API
 
 A Spring Boot application for managing and querying SWIFT code-based bank data. The app supports creating, retrieving, listing, and deleting banks via RESTful endpoints.
 
@@ -22,13 +22,23 @@ A Spring Boot application for managing and querying SWIFT code-based bank data. 
 
 ### Run with Docker
 
+Build the JAR (only once or after changes):
+
 ```bash
-mvn clean package
+    mvn clean package
 ```
 
-If no permission use this sudo:
+Then run the containers:
+
 ```bash
-sudo docker-compose up --build
+    docker-compose down -v
+    docker-compose up --build
+```
+
+> If you get a permission error, try running with `sudo`:
+```bash
+    sudo docker-compose down -v
+    sudo docker-compose up --build
 ```
 
 The application will be available at: [http://localhost:8080](http://localhost:8080)
@@ -39,11 +49,16 @@ Database is accessible via MySQL on port `3307` (user: `root`, pass: `root`, db:
 
 ## 🔌 API Endpoints
 
-All endpoints are under `/v1`:
+### 1. Get all of the banks
 
-### 1. Get bank details by SWIFT code
 ```
-GET /v1/swift-codes/{swiftCode}
+GET /api/banks
+```
+
+### 2. Get bank details by SWIFT code
+
+```
+GET /api/banks/{swiftCode}
 ```
 
 **Response**
@@ -61,9 +76,9 @@ GET /v1/swift-codes/{swiftCode}
 
 ---
 
-### 2. Get all banks in a country
+### 3. Get all banks in a country
 ```
-GET /v1/swift-codes/country/{countryISO2}
+GET /api/banks/country/{countryISO2}
 ```
 
 **Response**
@@ -79,7 +94,7 @@ GET /v1/swift-codes/country/{countryISO2}
 
 ### 3. Create a new bank
 ```
-POST /v1/swift-codes
+POST /api/banks
 ```
 
 **Body**
@@ -103,7 +118,7 @@ POST /v1/swift-codes
 
 ### 4. Delete a bank by SWIFT code
 ```
-DELETE /v1/swift-codes/{swiftCode}
+DELETE /api/banks/{swiftCode}
 ```
 
 **Response**
@@ -111,26 +126,21 @@ DELETE /v1/swift-codes/{swiftCode}
 { "message": "Bank deleted" }
 ```
 
----
+## Tests
 
-## 🧪 Running Tests
-
-Use Maven to run tests:
+To run tests locally with Maven:
 
 ```bash
-./mvnw test
+mvn test
 ```
-
-- Integration tests cover all endpoints
-- Unit tests validate business logic
 
 ---
 
 ## 📁 Project Structure
 
-- `src/main/java/.../rest` – Controllers
+- `src/main/java/.../controller` – Controllers
 - `src/main/java/.../service` – Business logic
-- `src/main/java/.../entity` – DTOs and Entities
+- `src/main/java/.../model` – Database model
+- `src/main/java/.../dto` – Data Transfer Objects
 - `src/test/java` – Unit & Integration tests
 - `docker-compose.yml` – Container setup
-- `init_swiftdb.sql` – DB initialization
