@@ -35,7 +35,8 @@ Then run the containers:
     docker-compose up --build
 ```
 
-> If you get a permission error, try running with `sudo`:
+If you get a permission error, try running with `sudo`:
+
 ```bash
     sudo docker-compose down -v
     sudo docker-compose up --build
