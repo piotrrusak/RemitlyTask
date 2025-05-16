@@ -93,7 +93,7 @@ GET /api/banks/country/{countryISO2}
 
 ---
 
-### 3. Create a new bank
+### 4. Create a new bank
 ```
 POST /api/banks
 ```
@@ -117,7 +117,7 @@ POST /api/banks
 
 ---
 
-### 4. Delete a bank by SWIFT code
+### 5. Delete a bank by SWIFT code
 ```
 DELETE /api/banks/{swiftCode}
 ```
