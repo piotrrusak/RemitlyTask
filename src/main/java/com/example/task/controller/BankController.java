@@ -34,10 +34,10 @@ public class BankController {
 
     @GetMapping("/banks/{swift_code}")
     public BankDetailsDTO getBankDetails(@PathVariable String swift_code) {
-        BankDetailsDTO firstEndpointDTO = this.bankService.findBankDetails(swift_code);
-        List<BranchDTO> branches = this.bankService.getBranchesOf(this.bankService.findBySwiftCode(firstEndpointDTO.getSwiftCode()).getId());
-        firstEndpointDTO.setBranches(branches);
-        return firstEndpointDTO;
+        BankDetailsDTO bankDetailsDTO = this.bankService.findBankDetails(swift_code);
+        List<BranchDTO> branches = this.bankService.getBranchesOf(this.bankService.findBySwiftCode(bankDetailsDTO.getSwiftCode()).getId());
+        bankDetailsDTO.setBranches(branches);
+        return bankDetailsDTO;
     }
 
     @DeleteMapping("/banks/{swift_code}")
@@ -48,17 +48,17 @@ public class BankController {
     }
 
     @PostMapping("/banks")
-    public Map<String, String> postBank(@RequestBody PostBankDTO thirdEndpointDTO) {
-        this.bankService.createBankFromDTO(thirdEndpointDTO);
+    public Map<String, String> postBank(@RequestBody PostBankDTO postBankDTO) {
+        this.bankService.createBankFromDTO(postBankDTO);
         return Map.of("message", "Bank created");
     }
 
     @GetMapping("/banks/country/{countryISO2}")
     public CountryDetailsDTO getCountryBanks(@PathVariable String countryISO2) {
-        CountryDetailsDTO secondEndpointDTO = this.bankService.findCountryDetails(countryISO2);
+        CountryDetailsDTO countryDetailsDTO = this.bankService.findCountryDetails(countryISO2);
         List<BanksDTO> banks = this.bankService.getBanksOf(countryISO2);
-        secondEndpointDTO.setSwiftCodes(banks);
-        return secondEndpointDTO;
+        countryDetailsDTO.setSwiftCodes(banks);
+        return countryDetailsDTO;
     }
 
 }

@@ -21,7 +21,7 @@ public class DeleteBankTest {
 
 
     @Test
-    void fourthEndpointIntegrationTest() throws Exception {
+    void deleteBankTest() throws Exception {
 
         String swiftCode = "AAISALTRXXX";
 

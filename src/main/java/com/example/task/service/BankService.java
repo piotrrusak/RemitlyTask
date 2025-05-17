@@ -96,12 +96,11 @@ public class BankService implements BankServiceInterface {
 
         Bank bank = new Bank();
         bank.setSwiftCode(dto.getSwiftCode());
-        bank.setHeadquarter(dto.getIsHeadquarter());
+        bank.setHeadquarter(dto.isHeadquarter());
         bank.setBankName(bankName);
         bank.setCountry(country);
         bank.setAddress(address);
         bank.setCodeType(null);
-        bank.setHeadquarter(null);
 
         return bankRepository.save(bank);
     }

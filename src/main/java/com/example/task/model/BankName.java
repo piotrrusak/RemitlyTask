@@ -1,8 +1,12 @@
 package com.example.task.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name="BankName")
 public class BankName {
 
@@ -12,21 +16,5 @@ public class BankName {
     private int id;
     @Column(name="bank_name")
     private String bankName;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getBankName() {
-        return bankName;
-    }
-
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
-    }
 
 }

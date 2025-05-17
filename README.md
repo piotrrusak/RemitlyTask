@@ -1,5 +1,4 @@
-
-_# Swift Bank API
+# Swift Bank API
 
 A Spring Boot application for managing and querying SWIFT code-based bank data. The app supports creating, retrieving, listing, and deleting banks via RESTful endpoints.
 

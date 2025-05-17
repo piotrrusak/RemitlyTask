@@ -104,7 +104,7 @@ public class CsvImportService {
 
                 Bank bank = new Bank();
                 bank.setSwiftCode(dataSwiftCode);
-                bank.setHeadquarter(isHeadquarter); // boolean setter
+                bank.setHeadquarter(isHeadquarter);
                 bank.setAddress(address);
                 bank.setBankName(bankName);
                 bank.setCountry(country);
@@ -119,7 +119,7 @@ public class CsvImportService {
                                     dataSwiftCode.length() >= 8 &&
                                     hqSwift.substring(0, 8).equals(dataSwiftCode.substring(0, 8))) {
 
-                                bank.setHeadquarter(hq);
+                                bank.setHeadquarterBank(hq);
                                 break;
                             }
                         }

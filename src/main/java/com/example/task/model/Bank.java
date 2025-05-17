@@ -1,8 +1,12 @@
 package com.example.task.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "Bank")
 public class Bank {
 
@@ -30,76 +34,11 @@ public class Bank {
     @Column(name = "swift_code")
     private String swiftCode;
 
-    @Column(name = "is_headquarter")
-    private boolean isHeadquarter;
+    @Column(name = "headquarter")
+    private boolean headquarter;
 
     @ManyToOne
-    @JoinColumn(name = "headquarter")
-    private Bank headquarter;
+    @JoinColumn(name = "headquarterBank")
+    private Bank headquarterBank;
 
-    // === GETTERY I SETTERY ===
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public BankName getBankName() {
-        return bankName;
-    }
-
-    public void setBankName(BankName bankName) {
-        this.bankName = bankName;
-    }
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public CodeType getCodeType() {
-        return codeType;
-    }
-
-    public void setCodeType(CodeType codeType) {
-        this.codeType = codeType;
-    }
-
-    public String getSwiftCode() {
-        return swiftCode;
-    }
-
-    public void setSwiftCode(String swiftCode) {
-        this.swiftCode = swiftCode;
-    }
-
-    public boolean isHeadquarter() {
-        return isHeadquarter;
-    }
-
-    public void setHeadquarter(boolean headquarter) {
-        isHeadquarter = headquarter;
-    }
-
-    public Bank getHeadquarter() {
-        return headquarter;
-    }
-
-    public void setHeadquarter(Bank headquarter) {
-        this.headquarter = headquarter;
-    }
 }

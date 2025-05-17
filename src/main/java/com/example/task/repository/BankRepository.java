@@ -31,7 +31,7 @@ public interface BankRepository extends JpaRepository<Bank, Integer> {
     @Query(
             """
             SELECT new com.example.task.dto.BankDetailsDTO(
-                a.address, bn.bankName, c.countryISO2, c.countryName, b.isHeadquarter, b.swiftCode
+                a.address, bn.bankName, c.countryISO2, c.countryName, b.headquarter, b.swiftCode
             )
             FROM Bank b
             JOIN b.bankName bn
@@ -45,13 +45,13 @@ public interface BankRepository extends JpaRepository<Bank, Integer> {
     @Query(
             """
             SELECT new com.example.task.dto.BranchDTO(
-                a.address, bn.bankName, c.countryISO2, b.isHeadquarter, b.swiftCode
+                a.address, bn.bankName, c.countryISO2, b.headquarter, b.swiftCode
             )
             FROM Bank b
             JOIN b.address a
             JOIN b.bankName bn
             JOIN b.country c
-            WHERE b.headquarter.id = :id
+            WHERE b.headquarterBank.id = :id
             """
     )
     List<BranchDTO> getBranchesOf(@Param("id") int id);
@@ -70,7 +70,7 @@ public interface BankRepository extends JpaRepository<Bank, Integer> {
     @Query(
             """
             SELECT new com.example.task.dto.BanksDTO(
-                a.address, bn.bankName, c.countryISO2, b.isHeadquarter, b.swiftCode
+                a.address, bn.bankName, c.countryISO2, b.headquarter, b.swiftCode
             )
             FROM Bank b
             JOIN b.country c

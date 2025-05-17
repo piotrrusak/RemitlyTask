@@ -21,7 +21,7 @@ public class GetCountryBanksTest {
     private MockMvc mockMvc;
 
     @Test
-    void secondEndpointIntegrationTest() throws Exception {
+    void getCountryBanksTest() throws Exception {
 
         String countryISO2 = "PL";
 

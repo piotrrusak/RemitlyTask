@@ -20,7 +20,7 @@ public class GetBankDetailsTest {
     private MockMvc mockMvc;
 
     @Test
-    void firstEndpointIntegrationTest() throws Exception {
+    void getBankDetailsTest() throws Exception {
 
         String swiftCode = "AAISALTRXXX";
 
@@ -30,7 +30,7 @@ public class GetBankDetailsTest {
                 .andExpect(jsonPath("$.bankName").isString())
                 .andExpect(jsonPath("$.countryISO2").isString())
                 .andExpect(jsonPath("$.countryName").isString())
-                .andExpect(jsonPath("$.isHeadquarter").value(true))
+                .andExpect(jsonPath("$.headquarter").value(true))
                 .andExpect(jsonPath("$.swiftCode").value(swiftCode))
                 .andExpect(jsonPath("$.branches").isArray());
     }
